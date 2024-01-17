@@ -1,0 +1,11 @@
+- name: "install {{component}}"
+  hosts: "{{component}}"
+  roles:
+  - "{{component}}"
+
+
+#   Here component means variables so we are creating ansible variables here
+# Without writing mongodb.yaml, cart.yaml all these, we are creating one variable called component
+# So we have to pass this variable
+# For ex if we pass mongodb
+# It will come asinstall mongodb and connects with mongdb hosts and call the mongdb role
