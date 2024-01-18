@@ -24,8 +24,8 @@
 
 - name: "load {{component}} data"
   ansible.builtin.shell: "mongo --host 172.31.34.203 < /app/schema/{{component}}.js"
-  when: products_count.stdout == "0" #and component == "catalogue" #keep double quotes"
-  ignore_errors: true
+    when: products_count.stdout == "0" #and component == "catalogue" #keep double quotes"
+    ignore_errors: true
 
 # - name: "load user data"
 #   ansible.builtin.shell: "mongo --host 172.31.34.203 < /app/schema/{{component}}.js"
