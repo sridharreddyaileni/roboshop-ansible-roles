@@ -1,0 +1,16 @@
+- name: install mysql client
+  ansible.builtin.dnf:
+    name: mysql
+    state: present
+
+- name: check cities schema exists or not
+  ansible.builtin.command: mysql -h 172.31.38.41 -uroot -p{{mysql_password}} -sN -e "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'cities'"
+  register: schema
+
+- name: print output
+  ansible.builtin.debug:
+    msg: "schema output: {{schema}}"
+
+- name: load cities data
+  ansible.builtin.shell: "mysql -h 172.31.38.41 -uroot -p{{mysql_password}} < /app/schema/shipping.sql" #Here we changed command to shell
+  when: schema.stdout != "1"
