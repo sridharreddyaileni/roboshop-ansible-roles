@@ -13,7 +13,7 @@
   register: entries_count
   when: component == "catalogue"
 
-- name: get the entries count"
+- name: get the entries count
   ansible.builtin.command: mongo --host 172.31.34.203 --quiet --eval 'db.getSiblingDB("user"); db.products.count()'
   register: entries_count
   when: component == "user"
