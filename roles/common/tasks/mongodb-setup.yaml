@@ -25,9 +25,9 @@
 - name: load catalogue data
   ansible.builtin.shell: "mongo --host 172.31.34.203 < /app/schema/catalogue.js"
   when: entries_count == "0" and component == "catalogue"
-  #ignore_errors: true
-
-- name: "load user data"
-  ansible.builtin.shell: "mongo --host 172.31.34.203 < /app/schema/{{component}}.js"
-  when: entries_count.stdout == "0" and component == "user"
   ignore_errors: true
+
+- name: load user data
+  ansible.builtin.shell: "mongo --host 172.31.34.203 < /app/schema/{{component}}.js"
+  when: entries_count == "0" and component == "user"
+  #ignore_errors: true
