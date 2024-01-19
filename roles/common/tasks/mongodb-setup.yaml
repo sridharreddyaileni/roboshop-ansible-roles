@@ -13,7 +13,7 @@
   register: products_count
   when: component == "catalogue"
 
-- name: "get the user entries count"
+- name: "get the user count"
   ansible.builtin.shell: mongo --host 172.31.34.203 --quiet --eval 'db.getSiblingDB("user"); db.users.count()'
   register: users_count
   when: component == "user"
@@ -29,5 +29,5 @@
 
 - name: load user data
   ansible.builtin.shell: "mongo --host 172.31.34.203 < /app/schema/user.js"
-  when: user_count == "0" and component == "user"
-  ignore_errors: true
+  when: users_count == "0" and component == "user"
+  #ignore_errors: true
