@@ -23,7 +23,7 @@
 #     msg: "entries count: {{entries_count}}"
 
 - name: "load catalogue data"
-  ansible.builtin.shell: "mongo --host 172.31.34.203 < /app/schema/{{component}}.js"
+  ansible.builtin.shell: "mongo --host 172.31.34.203 < /app/schema/catalogue.js"
   when: entries_count.stdout == "0" #and component == "catalogue"
   #ignore_errors: true
 
