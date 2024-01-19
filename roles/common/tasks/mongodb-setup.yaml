@@ -24,7 +24,7 @@
 
 - name: load catalogue data
   ansible.builtin.shell: "mongo --host 172.31.34.203 < /app/schema/catalogue.js"
-  when: entries_count == "0" and component == "catalogue"
+  when: products_count == "0" and component == "catalogue"
   #ignore_errors: true
 
 - name: load user data
