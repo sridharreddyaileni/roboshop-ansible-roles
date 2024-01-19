@@ -1,14 +1,19 @@
 - name: install maven
-  ansible.builtin.dnf:
+  ansible.builtin.dnf:  #We can use either package or dnf  here
     name: maven
     state: present
 
 - name: Install dependencies
   ansible.builtin.command: mvn clean package
-  args:
-    chdir: /app
+    args:
+      chdir: /app
+  
+  # - name: rename jar file
+  #   ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
+  #   args:
+  #     chdir: /app
 
 - name: rename jar file
-  ansible.builtin.command: mv target/{{component}}-{{shipping version}}.jar {{component}}.jar
+  ansible.builtin.command: mv target/{{component}}-{{shipping_version}}.jar {{component}}.jar
   args:
     chdir: /app
