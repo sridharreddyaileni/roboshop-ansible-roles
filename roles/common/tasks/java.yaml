@@ -1,5 +1,5 @@
 - name: install maven
-  ansible.builtin.dnf:  #We can use either package or dnf  here
+  ansible.builtin.package:  #We can use either package or dnf  here
     name: maven
     state: present
 
