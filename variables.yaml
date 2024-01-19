@@ -8,3 +8,5 @@ USER_HOST: 172.31.89.56
 SHIPPING_HOST: 172.31.40.73
 PAYMENT_HOST: 172.31.93.108
 DISPATCH_HOST: 172.31.87.107
+
+#Web host not needed as it will not used anywhere
