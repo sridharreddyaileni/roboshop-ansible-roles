@@ -1,10 +1,10 @@
 - name: install maven
-  ansible.builtin.package:  #We can use either package or dnf  here
+  ansible.builtin.dnf:
     name: maven
     state: present
 
-- name: install dependencies
-  ansible.builtin.shell: mvn clean package
+- name: Install dependencies
+  ansible.builtin.command: mvn clean package
   args:
     chdir: /app
   
