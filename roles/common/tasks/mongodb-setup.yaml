@@ -8,20 +8,26 @@
     name: mongodb-org-shell
     state: present
 
-- name: "get the {{component}} entries count"
+- name: "get the catalogue entries count"
   ansible.builtin.shell: mongo --host 172.31.34.203 --quiet --eval 'db.getSiblingDB("catalogue"); db.entries.count()'
   register: entries_count
   when: component == "catalogue"
 
-- name: "get the {{component}} entries count"
+- name: "get the user entries count"
   ansible.builtin.shell: mongo --host 172.31.34.203 --quiet --eval 'db.getSiblingDB("user"); db.entries.count()'
   register: entries_count
   when: component == "user"
 
-  # - name: print the count
-  #   ansible.builtin.debug:
-  #     msg: "product count: {{product_count}}"
+# - name: print the count
+#   ansible.builtin.debug:
+#     msg: "entries count: {{entries_count}}"
 
-- name: "load {{component}} data"
-  ansible.builtin.command: "mongo --host 172.31.34.203 < /app/schema/{{component}}.js"
-  when: entries_count.stdout == "0"
+- name: "load catalogue data"
+  ansible.builtin.shell: "mongo --host 172.31.34.203 < /app/schema/{{component}}.js"
+  when: entries_count.stdout == "0" and component == "catalogue"
+  ignore_errors: true
+
+- name: "load user data"
+  ansible.builtin.shell: "mongo --host 172.31.34.203 < /app/schema/{{component}}.js"
+  when: entries_count.stdout == "0" and component == "user"
+  ignore_errors: true
