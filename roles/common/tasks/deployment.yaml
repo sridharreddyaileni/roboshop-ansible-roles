@@ -9,7 +9,7 @@
   tags:
   - deployment
   ansible.builtin.file:
-    path: /app/*
+    path: /app  #path: /app (removing  /*)
     state: absent
-    #force: yes
-    #recurse: yes
+    #force: yes -Force: yes--> is likerm -rf
+    #recurse: yes - recurse option is only when directory exists/available
