@@ -4,7 +4,7 @@
     state: present
 
 - name: install dependencies
-  ansible.builtin.command: mvn clean package
+  ansible.builtin.shell: mvn clean package
   args:
     chdir: /app
   
