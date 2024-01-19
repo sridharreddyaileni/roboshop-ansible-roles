@@ -8,13 +8,13 @@
     name: mongodb-org-shell
     state: present
 
-- name: get the entries count
-  ansible.builtin.command: mongo --host 172.31.34.203 --quiet --eval 'db.getSiblingDB("catalogue"); db.entries.count()'
+- name: "get the {{component}} entries count"
+  ansible.builtin.shell: mongo --host 172.31.34.203 --quiet --eval 'db.getSiblingDB("catalogue"); db.entries.count()'
   register: entries_count
   when: component == "catalogue"
 
-- name: get the entries count
-  ansible.builtin.command: mongo --host 172.31.34.203 --quiet --eval 'db.getSiblingDB("user"); db.entries.count()'
+- name: "get the {{component}} entries count"
+  ansible.builtin.shell: mongo --host 172.31.34.203 --quiet --eval 'db.getSiblingDB("user"); db.entries.count()'
   register: entries_count
   when: component == "user"
 
